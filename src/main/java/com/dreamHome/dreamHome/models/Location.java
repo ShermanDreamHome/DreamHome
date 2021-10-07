@@ -1,96 +1,49 @@
 package com.dreamHome.dreamHome.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "location")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private Long id;
 
     @Column(nullable = false, length = 200)
+    @Getter
+    @Setter
     private String address1;
 
     @Column(nullable = false, length = 200)
+    @Getter
+    @Setter
     private String address2;
 
     @Column(nullable = false, length = 200)
+    @Getter
+    @Setter
     private String city;
 
     @Column(nullable = false, length = 200)
+    @Getter
+    @Setter
     private String state;
 
     @Column(nullable = false, length = 20)
+    @Getter
+    @Setter
     private Integer zip;
 
-    public Location() {}
-
-    public Location(Long id, String address1, String address2, String city, String state, Integer zip) {
-        this.id = id;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-    }
-
-    public Location(String address1, String address2, String city, String state, Integer zip) {
-        this.address1 = address1;
-        this.address2 = address2;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAddress1() {
-        return address1;
-    }
-
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Integer getZip() {
-        return zip;
-    }
-
-    public void setZip(Integer zip) {
-        this.zip = zip;
-    }
 
     @Override
     public String toString() {

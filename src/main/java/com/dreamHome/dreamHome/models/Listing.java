@@ -1,137 +1,67 @@
 package com.dreamHome.dreamHome.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "listing")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Listing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private Long id;
 
     @Column(nullable = false, length = 100)
+    @Getter
+    @Setter
     private Integer price;
 
     @Column(nullable = false, length = 100)
+    @Getter
+    @Setter
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
+    @Getter
+    @Setter
     private String description;
 
     @Column(nullable = false)
+    @Getter
+    @Setter
     private Integer squareFt;
 
     @ManyToOne
+    @Getter
+    @Setter
     private Location location;
 
-    @Column(nullable = false, length = 200)
-    private Long owner_id;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    @Getter
+    @Setter
+    private User owner;
 
     @Column(nullable = false, length = 200)
+    @Getter
+    @Setter
     private Long realtor_api_id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "listing")
+    @Getter
+    @Setter
     private List<Photo> photos;
 
-    public Listing() {}
 
-
-    public Listing(Long id, Integer price, String title, String description, Integer squareFt, Location location, Long owner_id, Long realtor_api_id, List<Photo> photos) {
-        this.id = id;
-        this.price = price;
-        this.title = title;
-        this.description = description;
-        this.squareFt = squareFt;
-        this.location = location;
-        this.owner_id = owner_id;
-        this.realtor_api_id = realtor_api_id;
-        this.photos = photos;
-    }
-
-    public Listing(Integer price, String title, String description, Integer squareFt, Location location, Long owner_id, Long realtor_api_id, List<Photo> photos) {
-        this.price = price;
-        this.title = title;
-        this.description = description;
-        this.squareFt = squareFt;
-        this.location = location;
-        this.owner_id = owner_id;
-        this.realtor_api_id = realtor_api_id;
-        this.photos = photos;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getSquareFt() {
-        return squareFt;
-    }
-
-    public void setSquareFt(Integer squareFt) {
-        this.squareFt = squareFt;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Long getOwner_id() {
-        return owner_id;
-    }
-
-    public void setOwner_id(Long owner_id) {
-        this.owner_id = owner_id;
-    }
-
-    public Long getRealtor_api_id() {
-        return realtor_api_id;
-    }
-
-    public void setRealtor_api_id(Long realtor_api_id) {
-        this.realtor_api_id = realtor_api_id;
-    }
-
-    public List<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
-    }
 
     @Override
     public String toString() {
@@ -142,7 +72,7 @@ public class Listing {
                 ", description='" + description + '\'' +
                 ", squareFt=" + squareFt +
                 ", location=" + location +
-                ", owner_id=" + owner_id +
+                ", owner_id=" + owner +
                 ", realtor_api_id=" + realtor_api_id +
                 ", photos=" + photos +
                 '}';

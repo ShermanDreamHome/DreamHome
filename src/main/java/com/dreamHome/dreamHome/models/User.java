@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "user", indexes = {
-        @Index(name = "idx_user_location", columnList = "location")
-})
+@Table(name = "user")
 public class User {
 
     @Id
@@ -45,12 +43,12 @@ public class User {
     )
     private List<Favorites> favorites;
 
-    @ManyToOne
+    @OneToOne
     private Location location;
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String email, Integer phone, String username, String photoUrl, String password, Boolean isAdmin, Location location) {
+    public User(Long id, String firstName, String lastName, String email, Integer phone, String username, String photoUrl, String password, Boolean isAdmin, List<Favorites> favorites, Location location) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,10 +58,11 @@ public class User {
         this.photoUrl = photoUrl;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.favorites = favorites;
         this.location = location;
     }
 
-    public User(String firstName, String lastName, String email, Integer phone, String username, String photoUrl, String password, Boolean isAdmin, Location location) {
+    public User(String firstName, String lastName, String email, Integer phone, String username, String photoUrl, String password, Boolean isAdmin, List<Favorites> favorites, Location location) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -72,6 +71,7 @@ public class User {
         this.photoUrl = photoUrl;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.favorites = favorites;
         this.location = location;
     }
 
@@ -89,14 +89,6 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
     }
 
     public String getLastName() {
@@ -131,6 +123,14 @@ public class User {
         this.username = username;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -147,13 +147,15 @@ public class User {
         isAdmin = admin;
     }
 
-    public Location getLocation() {
-        return location;
+    public List<Favorites> getFavorites() {
+        return favorites;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setFavorites(List<Favorites> favorites) {
+        this.favorites = favorites;
     }
+
+
 
     @Override
     public String toString() {
@@ -164,8 +166,10 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", username='" + username + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
                 ", password='" + password + '\'' +
                 ", isAdmin=" + isAdmin +
+                ", favorites=" + favorites +
                 ", location=" + location +
                 '}';
     }

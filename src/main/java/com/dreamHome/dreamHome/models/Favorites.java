@@ -12,11 +12,11 @@ public class Favorites {
 
 
     @ManyToOne
-    @JoinColumn(name = "listing")
+    @JoinColumn(name = "listing_id")
     private Listing listing;
 
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Favorites() {}

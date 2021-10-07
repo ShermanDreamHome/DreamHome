@@ -1,6 +1,7 @@
 package com.dreamHome.dreamHome.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "location")

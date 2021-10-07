@@ -12,7 +12,7 @@ public class Location {
     @Column(nullable = false, length = 200)
     private String address1;
 
-    @Column(nullable = true, length = 200)
+    @Column(nullable = false, length = 200)
     private String address2;
 
     @Column(nullable = false, length = 200)

@@ -6,10 +6,22 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<form method="get" th:action="@{/search}"}>
-    <input type="text" placeholder="Search.." name="search">
-    <button type="submit"><i class="fa fa-search"></i></button>
+<form class="form-row text-center" method="get" th:action="@{/search}"}>
+    <input class="col" type="text" placeholder="Search.." name="search">
+    <button class="col" type="submit">Search</button>
 </form>
+
+<div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4">
+        <div class="card">
+            <img src="https://photos.zillowstatic.com/fp/b8ed34b47cc5ae80e42b77809eb788f0-cc_ft_768.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>

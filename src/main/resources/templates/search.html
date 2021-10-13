@@ -6,7 +6,10 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-
+<form method="get" th:action="@{/search}"}>
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
 
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>

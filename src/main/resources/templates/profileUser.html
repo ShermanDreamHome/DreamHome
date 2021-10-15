@@ -6,7 +6,27 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<h5>Create New Listing</h5>
+<form class="form-group" method="get" th:action="@{|/createListing|}">
+    <button class="form-control btn-sm" name="create" type="submit" id="create">Create New Listing</button>
+</form>
+<div class="card">
+    <div class="card-body" th:each="post:${myListings}">
+        <h2 class="card-subtitle" th:text="${listing.price}">$</h2>
+        <h2 class="card-subtitle" th:text="${listing.bed}"></h2>
+        <h2 class="card-subtitle" th:text="${listing.bath}"></h2>
+        <h2 class="card-subtitle" th:text="${listing.sqft}"></h2>
+        <h2 class="card-subtitle" th:text="${listing.location}"></h2>
 
+        <h5>Edit Post</h5>
+        <form class="form-group" method="get" th:action="@{|/edit/${listing.id}|}">
+            <button class="form-control btn-sm" name="edit" type="submit" id="edit">Edit Listing</button>
+        </form>
+        <form class="form-group" method="post" th:action="@{|/delete/${listing.id}|}">
+            <button class="form-control btn-sm" name="delete" type="submit" id="delete">Delete Listing</button>
+        </form>
+    </div>
+</div>
 
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>

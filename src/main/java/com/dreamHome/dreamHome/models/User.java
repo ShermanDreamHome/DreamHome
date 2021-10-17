@@ -82,6 +82,23 @@ public class User {
     private List<Listing> listing;
 
 
+
+    public User(User copy){
+
+        id = copy.id;
+        firstName = copy.firstName;
+        lastName = copy.lastName;
+        email = copy.email;
+        phone = copy.phone;
+        username = copy.username;
+        photoUrl = copy.photoUrl;
+        password = copy.password;
+        isAdmin = copy.isAdmin;
+        favorites = copy.favorites;
+        location = copy.location;
+        listing = copy.listing;
+    }
+
     @Override
     public String toString() {
         return "User{" +

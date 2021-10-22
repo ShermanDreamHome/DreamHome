@@ -16,10 +16,10 @@ public class UserDetailsLoader implements UserDetailsService {
         this.user = user;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = user.findByUsername(username);
-
         if (user == null) {
             throw new UsernameNotFoundException("No user found for " + username);
         }

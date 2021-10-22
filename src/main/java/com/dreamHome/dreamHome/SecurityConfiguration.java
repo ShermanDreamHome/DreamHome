@@ -2,12 +2,14 @@ package com.dreamHome.dreamHome;
 
 import com.dreamHome.dreamHome.services.UserDetailsLoader;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserDetailsLoader usersLoader;
@@ -47,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/listing/create", // only authenticated users can create listings
-                        "/listing/{id}/{edit}", // only authenticated users can edit listings
+                        "/listing/{id}/{edit}" // only authenticated users can edit listings
                 )
                 .authenticated()
                 ;

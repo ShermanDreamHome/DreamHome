@@ -1,12 +1,25 @@
 package com.dreamHome.dreamHome.controllers;
 
-import lombok.Getter;
+
+import com.dreamHome.dreamHome.models.User;
+import com.dreamHome.dreamHome.repositories.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
+
+    private UserRepository userDoa;
+    private PasswordEncoder passwordEncoder;
+
+    public UserController(UserRepository userDoa, PasswordEncoder passwordEncoder) {
+        this.userDoa = userDoa;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @GetMapping("/hero")
     public String home(){
@@ -18,10 +31,6 @@ public class UserController {
         return "hero";
     }
 
-    @GetMapping("/login")
-    public String showLoginForm(){
-        return "login";
-    }
 
     @GetMapping("/user/profile")
     public String userProfile() {
@@ -33,5 +42,19 @@ public class UserController {
         return "profileAdmin";
     }
 
+    @GetMapping("/register")
+    public String showRegisterForm(Model model){
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute User user) {
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        userDoa.save(user);
+        return "redirect:/login";
+
+    }
 
 }

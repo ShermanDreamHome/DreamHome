@@ -33,12 +33,14 @@ public class UserController {
 
 
     @GetMapping("/user/profile")
-    public String userProfile() {
+    public String viewUserProfile() {
         return "profileUser";
     }
 
+    @PostMapping("/user/profile")
+
     @GetMapping("/admin/profile")
-    public String adminProfile() {
+    public String viewAdminProfile() {
         return "profileAdmin";
     }
 
@@ -58,4 +60,6 @@ public class UserController {
 
     }
 
+
+    //
 }

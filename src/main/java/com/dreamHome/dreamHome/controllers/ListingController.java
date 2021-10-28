@@ -1,8 +1,10 @@
 package com.dreamHome.dreamHome.controllers;
 
 import com.dreamHome.dreamHome.models.Listing;
+import com.dreamHome.dreamHome.models.User;
 import com.dreamHome.dreamHome.repositories.ListingRepository;
 import com.dreamHome.dreamHome.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +51,8 @@ public class ListingController {
     @PostMapping("/create")
     public String create(@ModelAttribute Listing listing){
 
-        listing.setOwner(userDao.getById(1L)); // I've set my owner Manually
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        listing.setOwner(userDao.getById(currentUser.getId())); // grabbing whatever user is currently logged in(current user session)
         searchDoa.save(listing);
         return "redirect:/profileUser";
     }
@@ -87,9 +90,5 @@ public class ListingController {
         return "redirect:/profileUser";
     }
 
-    @GetMapping("/profileUser")
-    public String profileUser(){
-        return "profileUser";
-    }
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head">
     <title>Create Listing</title>
 </head>
@@ -11,34 +11,34 @@
     <h1>Create Listing</h1>
     <form class="form-group" th:method="post" th:action="@{/createListing}" th:object="${listing}">
 
-        <img th:src="*{photoURL}">
+<!--        <img th:src="*{photoUrl}">-->
 
-        <label for="createPrice">Price</label>
-        <input class="form-control" id="createPrice" type="number" th:field="*{price}">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" type="text" th:field="*{title}">
 
-        <label for="createBed">Bed</label>
-        <input class="form-control" id="createBed" type="number" th:field="*{bed}">
+        <label for="price">Price</label>
+        <input class="form-control" id="price" type="text" th:field="*{price}">
 
-        <label for="createBath">Description</label>
-        <input class="form-control" id="createBath" type="number" th:field="*{bath}">
+        <label for="description">Description</label>
+        <input class="form-control" id="description" type="text" th:field="*{description}">
 
         <label for="createSqft">SquareFt</label>
-        <input class="form-control" id="createSqft" type="number" th:field="*{sqft}">
+        <input class="form-control" id="createSqft" type="text" th:field="*{squareFt}">
 
-        <label for="createAddress1">Address Line 1</label>
-        <input class="form-control" id="createAddress1" type="text" th:field="*{address1}">
+        <label for="location">Location</label>
+        <input class="form-control" id="location" type="text" th:field="*{location}">
 
-        <label for="createAddress2">Address Line 2</label>
-        <input class="form-control" id="createAddress2" type="text" th:field="*{address2}">
+<!--        <label for="createAddress2">Address Line 2</label>-->
+<!--        <input class="form-control" id="createAddress2" type="text" th:field="*{address2}">-->
 
-        <label for="city">City</label>
-        <input class="form-control" id="city" type="text" th:field="*{city}">
+<!--        <label for="city">City</label>-->
+<!--        <input class="form-control" id="city" type="text" th:field="*{city}">-->
 
-        <label for="state">State</label>
-        <input class="form-control" id="state" type="text" th:field="*{state}">
+<!--        <label for="state">State</label>-->
+<!--        <input class="form-control" id="state" type="text" th:field="*{state}">-->
 
-        <label for="zip">Zip</label>
-        <input class="form-control" id="zip" type="number" th:field="*{zip}"><br>
+<!--        <label for="zip">Zip</label>-->
+<!--        <input class="form-control" id="zip" type="number" th:field="*{zip}"><br>-->
 
         <button class="btn btn-secondary btn-lg btn-block" type="submit">Create</button>
 

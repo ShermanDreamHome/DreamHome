@@ -5,34 +5,34 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-
+<div class="container text-center">
 <h1>Create an account</h1>
 <form th:action="@{/register}" method="POST" th:object="${user}">
 
     <label for="firstName">First Name</label>
-    <input id="firstName" th:field="*{firstName}" />
+    <input id="firstName" th:field="*{firstName}" /><br>
 
     <label for="lastName">Last Name</label>
-    <input id="lastName" th:field="*{lastName}" />
+    <input id="lastName" th:field="*{lastName}" /><br>
 
     <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+    <input id="email" th:field="*{email}" /><br>
 
     <label for="phone">Phone</label>
-    <input id="phone" th:field="*{phone}" />
+    <input id="phone" th:field="*{phone}" /><br>
 
     <label for="photoURL">Photo URL</label>
-    <input id="photoURL" th:field="*{photoUrl}" />
+    <input id="photoURL" th:field="*{photoUrl}" /><br>
 
     <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
+    <input id="username" th:field="*{username}" /><br>
 
     <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+    <input id="password" type="password" th:field="*{password}" /><br>
 
-    <input value="Register" type="submit" />
+    <input class="btn" value="Register" type="submit" />
 </form>
-
+</div>
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>
 </body>

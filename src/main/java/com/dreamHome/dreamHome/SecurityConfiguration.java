@@ -49,7 +49,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/listing/create", // only authenticated users can create listings
-                        "/listing/{id}/{edit}" // only authenticated users can edit listings
+                        "/listing/{id}/{edit}", // only authenticated users can edit listings
+                        "/user/profile",
+                        "/user/favorites",
+                        "/admin/profile",
+                        "/admin/favorites"
                 )
                 .authenticated()
                 ;

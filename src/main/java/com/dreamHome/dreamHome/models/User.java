@@ -50,7 +50,7 @@ public class User {
     @Setter
     private String photoUrl;
 
-    @Column(nullable = false, length = 55)
+    @Column(nullable = false, length = 255)
     @Getter
     @Setter
     private String password;

@@ -52,6 +52,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        user.setIsAdmin(false);
         userDoa.save(user);
         return "redirect:/login";
 

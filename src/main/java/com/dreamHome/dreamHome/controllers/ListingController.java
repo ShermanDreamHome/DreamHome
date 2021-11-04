@@ -45,6 +45,7 @@ public class ListingController {
     @GetMapping("/create")
     public String createView(Model model) {
         model.addAttribute("listing", new Listing());
+        //reference listing from owner?
         return "createListing";
     }
 
@@ -61,7 +62,7 @@ public class ListingController {
 
         Listing singleListing = searchDoa.getById(id);
 
-        model.addAttribute("post", singleListing);
+        model.addAttribute("listing", singleListing);
 
         return "profileUser";
     }
@@ -72,7 +73,8 @@ public class ListingController {
 
         updateListing.setId(id);
 
-        updateListing.setOwner(userDao.getById(1L));
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        updateListing.setOwner(userDao.getById(currentUser.getId()));
 
         searchDoa.save(updateListing);
 

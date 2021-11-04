@@ -12,6 +12,7 @@ public class AuthenticationController {
         return "login";
     }
 
+
     // do i have a post mapping here to redirect to
     // profile and favorites or in user controller?
 }

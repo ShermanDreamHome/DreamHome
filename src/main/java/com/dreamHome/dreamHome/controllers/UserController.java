@@ -3,6 +3,7 @@ package com.dreamHome.dreamHome.controllers;
 
 import com.dreamHome.dreamHome.models.User;
 import com.dreamHome.dreamHome.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,11 +34,16 @@ public class UserController {
 
 
     @GetMapping("/user/profile")
-    public String viewUserProfile() {
+    public String viewUserProfile(Model model) {
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       model.addAttribute("user", userDoa.getById(currentUserSession.getId())); //gets user by session
         return "profileUser";
     }
 
     @PostMapping("/user/profile")
+    public String userProfile(){
+        return "profileUser";
+    }
 
     @GetMapping("/admin/profile")
     public String viewAdminProfile() {

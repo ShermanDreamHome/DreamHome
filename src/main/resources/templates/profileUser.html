@@ -10,12 +10,13 @@
 <form class="form-group" method="get" th:action="@{|/createListing|}">
     <button class="form-control btn-sm" name="create" type="submit" id="create">Create New Listing</button>
 </form>
+<h1>My Listings</h1>
 <div class="card">
-    <div class="card-body" th:each="post:${myListings}">
-        <h2 class="card-subtitle" th:text="${listing.price}">$</h2>
-        <h2 class="card-subtitle" th:text="${listing.bed}"></h2>
-        <h2 class="card-subtitle" th:text="${listing.bath}"></h2>
-        <h2 class="card-subtitle" th:text="${listing.sqft}"></h2>
+    <div class="card-body" th:each="listing:${user.listing}">
+        <h2 class="card-subtitle" th:text="${listing.title}"></h2>
+        <h2 class="card-subtitle" th:text="${listing.price}"></h2>
+        <h2 class="card-subtitle" th:text="${listing.description}"></h2>
+        <h2 class="card-subtitle" th:text="${listing.squareFt}"></h2>
         <h2 class="card-subtitle" th:text="${listing.location}"></h2>
 
         <h5>Edit Post</h5>

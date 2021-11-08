@@ -42,14 +42,16 @@ public class ListingController {
         return "search";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/createListing")
     public String createView(Model model) {
+        User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("listing", userDao.getById(currentUserSession.getId()));
         model.addAttribute("listing", new Listing());
         //reference listing from owner?
         return "createListing";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createListing")
     public String create(@ModelAttribute Listing listing){
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

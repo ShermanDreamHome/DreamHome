@@ -61,19 +61,12 @@ public class ListingController {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-
         locationDoa.save(location);
-//        listing.getLocation();
-//        locationDoa.save(listing.getLocation());
-        // grab location from listing object
-        // save said location to db through repo
-//        listing.getLocation()
-//        set response of save to listing location
         listing.setLocation(location);
 
         listing.setOwner(userDao.getById(currentUser.getId())); // grabbing whatever user is currently logged in(current user session)
         searchDoa.save(listing);
-        //create location object
+
 
         return "redirect:/user/profile";
     }

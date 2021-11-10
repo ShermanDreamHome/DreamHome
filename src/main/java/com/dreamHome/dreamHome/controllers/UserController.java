@@ -56,6 +56,10 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/user/favorites")
+    public String showFavorites(Model model) {
+        return "favoritesUser";
+    }
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());

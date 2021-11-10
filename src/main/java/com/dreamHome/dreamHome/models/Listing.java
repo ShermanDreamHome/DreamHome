@@ -40,7 +40,7 @@ public class Listing {
     @Setter
     private Integer squareFt;
 
-    @ManyToOne
+    @OneToOne
     @Getter
     @Setter
     private Location location;
@@ -51,7 +51,7 @@ public class Listing {
     @Setter
     private User owner;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = true, length = 200)
     @Getter
     @Setter
     private Long realtor_api_id;

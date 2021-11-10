@@ -17,29 +17,30 @@
         <input class="form-control" id="title" type="text" th:field="*{title}">
 
         <label for="price">Price</label>
-        <input class="form-control" id="price" type="text" th:field="*{price}">
+        <input class="form-control" id="price" type="number" th:field="*{price}">
 
         <label for="description">Description</label>
         <input class="form-control" id="description" type="text" th:field="*{description}">
 
         <label for="createSqft">SquareFt</label>
-        <input class="form-control" id="createSqft" type="text" th:field="*{squareFt}">
+        <input class="form-control" id="createSqft" type="number" th:field="*{squareFt}">
 
+        <div th:object="${location}">
         <label for="location">Location</label>
-        <input class="form-control" id="location" type="text" th:field="*{location}">
+        <input class="form-control" id="location" type="text" th:field="*{address1}">
 
-<!--        <label for="createAddress2">Address Line 2</label>-->
-<!--        <input class="form-control" id="createAddress2" type="text" th:field="*{address2}">-->
+        <label for="createAddress2">Address Line 2</label>
+        <input class="form-control" id="createAddress2" type="text" th:field="*{address2}">
 
-<!--        <label for="city">City</label>-->
-<!--        <input class="form-control" id="city" type="text" th:field="*{city}">-->
+        <label for="city">City</label>
+        <input class="form-control" id="city" type="text" th:field="*{city}">
 
-<!--        <label for="state">State</label>-->
-<!--        <input class="form-control" id="state" type="text" th:field="*{state}">-->
+        <label for="state">State</label>
+        <input class="form-control" id="state" type="text" th:field="*{state}">
 
-<!--        <label for="zip">Zip</label>-->
-<!--        <input class="form-control" id="zip" type="number" th:field="*{zip}"><br>-->
-
+        <label for="zip">Zip</label>
+        <input class="form-control" id="zip" type="number" th:field="*{zip}"><br>
+        </div>
         <button class="btn btn-secondary btn-lg btn-block" type="submit">Create</button>
 
     </form>

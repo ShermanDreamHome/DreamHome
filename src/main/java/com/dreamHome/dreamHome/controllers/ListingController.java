@@ -1,8 +1,10 @@
 package com.dreamHome.dreamHome.controllers;
 
 import com.dreamHome.dreamHome.models.Listing;
+import com.dreamHome.dreamHome.models.Location;
 import com.dreamHome.dreamHome.models.User;
 import com.dreamHome.dreamHome.repositories.ListingRepository;
+import com.dreamHome.dreamHome.repositories.LocationRepository;
 import com.dreamHome.dreamHome.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,12 @@ public class ListingController {
 
     private final ListingRepository searchDoa;
     private final UserRepository userDao;
+    private final LocationRepository locationDoa;
 
-    public ListingController(ListingRepository searchDoa, UserRepository userDao) {
+    public ListingController(ListingRepository searchDoa, UserRepository userDao, LocationRepository locationDoa) {
         this.searchDoa = searchDoa;
         this.userDao = userDao;
+        this.locationDoa = locationDoa;
     }
 
 
@@ -48,16 +52,30 @@ public class ListingController {
         model.addAttribute("listing", userDao.getById(currentUserSession.getId()));
         model.addAttribute("listing", new Listing());
         //reference listing from owner?
+       model.addAttribute("location", new Location());
         return "createListing";
     }
 
     @PostMapping("/createListing")
-    public String create(@ModelAttribute Listing listing){
+    public String create(@ModelAttribute Listing listing, @ModelAttribute Location location){
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+        locationDoa.save(location);
+//        listing.getLocation();
+//        locationDoa.save(listing.getLocation());
+        // grab location from listing object
+        // save said location to db through repo
+//        listing.getLocation()
+//        set response of save to listing location
+        listing.setLocation(location);
+
         listing.setOwner(userDao.getById(currentUser.getId())); // grabbing whatever user is currently logged in(current user session)
         searchDoa.save(listing);
-        return "redirect:/profileUser";
+        //create location object
+
+        return "redirect:/user/profile";
     }
     @GetMapping("/edit/{id}")
     public String editPost(Model model, @PathVariable Long id) {

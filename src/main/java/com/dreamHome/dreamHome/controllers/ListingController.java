@@ -110,7 +110,7 @@ public class ListingController {
         searchDoa.delete(deleteListing);
 
 
-        return "redirect:/profileUser";
+        return "redirect:/user/profile";
     }
 
 

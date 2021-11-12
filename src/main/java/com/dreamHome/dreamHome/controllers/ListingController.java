@@ -74,24 +74,32 @@ public class ListingController {
     public String editPost(Model model, @PathVariable Long id) {
 
         Listing singleListing = searchDoa.getById(id);
+        Location location = locationDoa.getById(id);
+
 
         model.addAttribute("listing", singleListing);
+        model.addAttribute("location", location);
 
         return "profileUser";
     }
 
     @PostMapping("/edit/{id}")
-    public String editListing(@PathVariable Long id, @ModelAttribute Listing updateListing) {
+    public String editListing(@PathVariable Long id,
+                              @ModelAttribute Listing updateListing,
+                              @ModelAttribute Location updateLocation) {
 
 
         updateListing.setId(id);
+
+        updateLocation.setId(id);
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         updateListing.setOwner(userDao.getById(currentUser.getId()));
 
         searchDoa.save(updateListing);
+        locationDoa.save(updateLocation);
 
-        return "redirect:/profileUser";
+        return "redirect:/user/profile";
     }
 
 

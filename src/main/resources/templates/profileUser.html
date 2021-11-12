@@ -5,6 +5,18 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<h3>Welcome Back</h3>
+<!--<div class="card">-->
+<!--    <div class="card-body" th:each="user:${user}">-->
+<!--        <h2 class="card-title" th:text="${user.firstName}"></h2>-->
+<!--        <h2 class="card-text" th:text="${user.lastName}"></h2>-->
+<!--        <h2 class="card-text" th:text="${user.email}"></h2>-->
+<!--        <h2 class="card-text" th:text="${user.photoUrl}"></h2>-->
+<!--        <h2 class="card-text" th:text="${user.location}"></h2>-->
+<!--</div>-->
+<!--    <form class="form-group" method="get" th:action="@{|/edit/${user.id}|}">-->
+<!--        <button class="form-control btn-sm" name="editProfile" type="submit" id="editProfile">Edit Profile</button>-->
+<!--    </form>-->
 
 <h5>Create New Listing</h5>
 <form class="form-group" method="get" th:action="@{|/createListing|}">
@@ -13,12 +25,12 @@
 <h1>My Listings</h1>
 <div class="card">
     <div class="card-body" th:each="listing:${user.listing}">
-        <h2 class="card-subtitle" th:text="${listing.title}"></h2>
-        <h2 class="card-subtitle" th:text="${listing.price}"></h2>
-        <h2 class="card-subtitle" th:text="${listing.description}"></h2>
-        <h2 class="card-subtitle" th:text="${listing.squareFt}"></h2>
-        <h2 class="card-subtitle" th:text="${listing.location}"></h2>
-
+        <h2 class="card-title" th:text="${listing.title}"></h2>
+        <h2 class="card-text" th:text="${listing.price}"></h2>
+        <h2 class="card-text" th:text="${listing.description}"></h2>
+        <h2 class="card-text" th:text="${listing.squareFt}"></h2>
+        <h2 class="card-text" th:text="${listing.location}"></h2>
+    </div>
 
         <form class="form-group" method="get" th:action="@{|/edit/${listing.id}|}">
             <button class="form-control btn-sm" name="edit" type="submit" id="edit">Edit Listing</button>

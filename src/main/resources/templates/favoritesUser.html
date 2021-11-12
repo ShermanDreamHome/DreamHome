@@ -10,6 +10,9 @@
     <h1>Welcome To Favorites</h1>
 </div>
 
+<form th:action="@{/logout}" th:method="post">
+    <button class="btn-block btn" style="margin-top: 8px">Logout</button>
+</form>
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>
 </body>

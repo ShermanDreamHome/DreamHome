@@ -23,8 +23,8 @@
     <button class="form-control btn-sm" name="create" type="submit" id="create">Create New Listing</button>
 </form>
 <h1>My Listings</h1>
-<div class="card">
-    <div class="card-body" th:each="listing:${user.listing}">
+<div class="card" th:each="listing:${user.listing}">
+    <div class="card-body">
         <h2 class="card-title" th:text="${listing.title}"></h2>
         <h2 class="card-text" th:text="${listing.price}"></h2>
         <h2 class="card-text" th:text="${listing.description}"></h2>

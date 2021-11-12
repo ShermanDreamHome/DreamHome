@@ -36,14 +36,15 @@ public class UserController {
     @GetMapping("/user/profile")
     public String viewUserProfile(Model model) {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(currentUserSession);
        model.addAttribute("user", userDoa.getById(currentUserSession.getId())); //gets user by session
         return "profileUser";
     }
 
-    @PostMapping("/user/profile")
-    public String userProfile(){
-        return "profileUser";
-    }
+//    @PostMapping("/user/profile")
+//    public String userProfile(){
+//        return "profileUser";
+//    }
 
     @GetMapping("/admin/profile")
     public String viewAdminProfile() {

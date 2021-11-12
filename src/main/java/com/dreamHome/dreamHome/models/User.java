@@ -45,7 +45,7 @@ public class User {
     @Setter
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     @Getter
     @Setter
     private String photoUrl;
@@ -90,13 +90,7 @@ public class User {
         lastName = copy.lastName;
         email = copy.email;
         phone = copy.phone;
-        username = copy.username;
-        photoUrl = copy.photoUrl;
         password = copy.password;
-        isAdmin = copy.isAdmin;
-        favorites = copy.favorites;
-        location = copy.location;
-        listing = copy.listing;
     }
 
     @Override

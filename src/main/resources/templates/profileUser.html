@@ -6,17 +6,16 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <h3>Welcome Back</h3>
-<!--<div class="card">-->
-<!--    <div class="card-body" th:each="user:${user}">-->
-<!--        <h2 class="card-title" th:text="${user.firstName}"></h2>-->
-<!--        <h2 class="card-text" th:text="${user.lastName}"></h2>-->
-<!--        <h2 class="card-text" th:text="${user.email}"></h2>-->
-<!--        <h2 class="card-text" th:text="${user.photoUrl}"></h2>-->
-<!--        <h2 class="card-text" th:text="${user.location}"></h2>-->
-<!--</div>-->
-<!--    <form class="form-group" method="get" th:action="@{|/edit/${user.id}|}">-->
-<!--        <button class="form-control btn-sm" name="editProfile" type="submit" id="editProfile">Edit Profile</button>-->
-<!--    </form>-->
+<div class="card">
+    <div class="card-body" th:each="user:${user}">
+        <h2 class="card-title" th:text="${user.firstName}"></h2>
+        <h2 class="card-text" th:text="${user.lastName}"></h2>
+        <h2 class="card-text" th:text="${user.email}"></h2>
+        <h2 class="card-text" th:text="${user.location}"></h2>
+</div>
+    <form class="form-group" method="get" th:action="@{|/edit/${user.id}|}">
+        <button class="form-control btn-sm" name="editProfile" type="submit" id="editProfile">Edit Profile</button>
+    </form>
 
 <h5>Create New Listing</h5>
 <form class="form-group" method="get" th:action="@{|/createListing|}">

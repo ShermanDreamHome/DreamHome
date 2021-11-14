@@ -12,9 +12,8 @@
     <div class="container text-center">
 
 
-        <form class="form-group" th:method="post" th:action="@{/edit}" th:object="${listing}">
+        <form class="form-group" th:method="post" th:action="@{|/edit/${listing.id}|}" th:object="${listing}">
 
-            <!--        <img th:src="*{photoUrl}">-->
 
             <label for="title">Title</label>
             <input class="form-control" id="title" type="text" th:field="*{title}">

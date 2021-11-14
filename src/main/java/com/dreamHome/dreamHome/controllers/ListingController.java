@@ -57,7 +57,8 @@ public class ListingController {
     }
 
     @PostMapping("/createListing")
-    public String create(@ModelAttribute Listing listing, @ModelAttribute Location location){
+    public String create(@ModelAttribute Listing listing,
+                         @ModelAttribute Location location){
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -95,8 +96,8 @@ public class ListingController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         updateListing.setOwner(userDao.getById(currentUser.getId()));
 
-        searchDoa.save(updateListing);
-        locationDoa.save(updateLocation);
+        searchDoa.save(updateListing); // this will update the listing repository
+        locationDoa.save(updateLocation); // this will update the location repo
 
         return "redirect:/user/profile";
     }

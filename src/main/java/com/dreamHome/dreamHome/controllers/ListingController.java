@@ -70,7 +70,7 @@ public class ListingController {
 
         return "redirect:/user/profile";
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editListing/{id}")
     public String editPost(Model model, @PathVariable Long id) {
 
         Listing singleListing = searchDoa.getById(id);
@@ -83,14 +83,13 @@ public class ListingController {
         return "profileUser";
     }
 
-    @PostMapping("/edit/{id}")
+    @PostMapping("/editListing/{id}")
     public String editListing(@PathVariable Long id,
                               @ModelAttribute Listing updateListing,
                               @ModelAttribute Location updateLocation) {
 
 
         updateListing.setId(id);
-
         updateLocation.setId(id);
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

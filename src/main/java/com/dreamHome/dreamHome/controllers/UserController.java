@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/editProfile/{id}")
-    public String editPost(Model model, @PathVariable Long id) {
+    public String editProfile(Model model, @PathVariable Long id) {
 
         User user = userDoa.getById(id);
         Location location = locationDoa.getById(id);
@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @PostMapping("/editProfile/{id}")
-    public String editListing(@PathVariable Long id,
+    public String editProfile(@PathVariable Long id,
                               @ModelAttribute User updateUser,
                               @ModelAttribute Location updateLocation) {
 

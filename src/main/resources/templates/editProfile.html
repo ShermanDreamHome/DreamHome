@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
+  <title>Edit Profile</title>
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<div class="container text-center">
+
+  <h1>Edit Profile</h1>
+
+  <div class="container text-center">
+
+
+    <form class="form-group" th:method="post" th:action="@{|/editProfile/${user.id}|}" th:object="${user}">
+
+
+      <label for="firstName">First Name</label>
+      <input class="form-control" id="firstName" type="text" th:field="*{firstName}">
+
+      <label for="lastName">Last Name</label>
+      <input class="form-control" id="lastName" type="number" th:field="*{lastName}">
+
+      <label for="email">Email</label>
+      <input class="form-control" id="email" type="text" th:field="*{email}">
+
+
+      <div th:object="${location}">
+        <label for="location">Address Line 1</label>
+        <input class="form-control" id="location" type="text" th:field="*{address1}">
+
+        <label for="createAddress2">Address Line 2</label>
+        <input class="form-control" id="createAddress2" type="text" th:field="*{address2}">
+
+        <label for="city">City</label>
+        <input class="form-control" id="city" type="text" th:field="*{city}">
+
+        <label for="state">State</label>
+        <input class="form-control" id="state" type="text" th:field="*{state}">
+
+        <label for="zip">Zip</label>
+        <input class="form-control" id="zip" type="number" th:field="*{zip}"><br>
+      </div>
+      <button class="btn btn-secondary btn-lg btn-block" type="submit">Edit</button>
+
+    </form>
+
+  </div>
+
+
+
+</div>
+
+
+<footer th:replace="partials/footer :: footer"></footer>
+<script th:replace="partials/scripts :: scripts"></script>
+</body>
+</html>

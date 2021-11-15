@@ -1,7 +1,10 @@
 package com.dreamHome.dreamHome.controllers;
 
 
+import com.dreamHome.dreamHome.models.Listing;
+import com.dreamHome.dreamHome.models.Location;
 import com.dreamHome.dreamHome.models.User;
+import com.dreamHome.dreamHome.repositories.LocationRepository;
 import com.dreamHome.dreamHome.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,17 +12,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
 
     private UserRepository userDoa;
+    private LocationRepository locationDoa;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDoa, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDoa,LocationRepository locationDoa, PasswordEncoder passwordEncoder) {
         this.userDoa = userDoa;
+        this.locationDoa = locationDoa;
         this.passwordEncoder = passwordEncoder;
+
     }
 
     @GetMapping("/hero")
@@ -41,10 +48,37 @@ public class UserController {
         return "profileUser";
     }
 
-//    @PostMapping("/user/profile")
-//    public String userProfile(){
-//        return "profileUser";
-//    }
+    @GetMapping("/editProfile/{id}")
+    public String editPost(Model model, @PathVariable Long id) {
+
+        User user = userDoa.getById(id);
+        Location location = locationDoa.getById(id);
+
+
+        model.addAttribute("user", user);
+        model.addAttribute("location", location);
+
+        return "editProfile";
+    }
+
+    @PostMapping("/editProfile/{id}")
+    public String editListing(@PathVariable Long id,
+                              @ModelAttribute User updateUser,
+                              @ModelAttribute Location updateLocation) {
+
+
+        updateUser.setId(id);
+        updateLocation.setId(id);
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        updateUser.setOwner(userDoa.getById(currentUser.getId()));
+//        updateUser.setId(userDoa.getById(currentUser.getId()));
+
+        userDoa.save(updateUser); // this will update the listing repository
+        locationDoa.save(updateLocation); // this will update the location repo
+
+        return "redirect:/user/profile";
+    }
 
     @GetMapping("/admin/profile")
     public String viewAdminProfile() {

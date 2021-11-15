@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
-    private UserRepository userDoa;
-    private LocationRepository locationDoa;
+    private UserRepository userDao;
+    private LocationRepository locationDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDoa,LocationRepository locationDoa, PasswordEncoder passwordEncoder) {
-        this.userDoa = userDoa;
-        this.locationDoa = locationDoa;
+    public UserController(UserRepository userDao,LocationRepository locationDao, PasswordEncoder passwordEncoder) {
+        this.userDao = userDao;
+        this.locationDao = locationDao;
         this.passwordEncoder = passwordEncoder;
 
     }
@@ -44,15 +44,15 @@ public class UserController {
     public String viewUserProfile(Model model) {
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(currentUserSession);
-       model.addAttribute("user", userDoa.getById(currentUserSession.getId())); //gets user by session
+       model.addAttribute("user", userDao.getById(currentUserSession.getId())); //gets user by session
         return "profileUser";
     }
 
     @GetMapping("/editProfile/{id}")
     public String editProfile(Model model, @PathVariable Long id) {
 
-        User user = userDoa.getById(id);
-        Location location = locationDoa.getById(id);
+        User user = userDao.getById(id);
+        Location location = locationDao.getById(id);
 
 
         model.addAttribute("user", user);
@@ -67,15 +67,15 @@ public class UserController {
                               @ModelAttribute Location updateLocation) {
 
 
-        updateUser.setId(id);
+//        updateUser.setId(id);
         updateLocation.setId(id);
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        updateUser.setOwner(userDoa.getById(currentUser.getId()));
-//        updateUser.setId(userDoa.getById(currentUser.getId()));
 
-        userDoa.save(updateUser); // this will update the listing repository
-        locationDoa.save(updateLocation); // this will update the location repo
+        updateUser.setId(currentUser.getId());
+
+        userDao.save(updateUser); // this will update the listing repository
+        locationDao.save(updateLocation); // this will update the location repo
 
         return "redirect:/user/profile";
     }
@@ -100,7 +100,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setIsAdmin(false);
-        userDoa.save(user);
+        userDao.save(user);
         return "redirect:/login";
 
     }

@@ -55,7 +55,7 @@ public class User {
     @Setter
     private String password;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = true, length = 10)
     @Getter
     @Setter
     private Boolean isAdmin;

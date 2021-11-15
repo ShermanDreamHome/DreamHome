@@ -13,7 +13,7 @@
         <h2 class="card-text" th:text="${user.email}"></h2>
         <h2 class="card-text" th:text="${user.location}"></h2>
 </div>
-    <form class="form-group" method="get" th:action="@{|/edit/${user.id}|}">
+    <form class="form-group" method="get" th:action="@{|/editProfile/${user.id}|}">
         <button class="form-control btn-sm" name="editProfile" type="submit" id="editProfile">Edit Profile</button>
     </form>
 

@@ -10,10 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -64,7 +61,8 @@ public class UserController {
     @PostMapping("/editProfile/{id}")
     public String editProfile(@PathVariable Long id,
                               @ModelAttribute User updateUser,
-                              @ModelAttribute Location updateLocation) {
+                              @ModelAttribute Location updateLocation,
+                              @RequestParam(name = "product_image_url") String photoUrl) {
 
 
 //        updateUser.setId(id);
@@ -76,6 +74,7 @@ public class UserController {
 
         userDao.save(updateUser); // this will update the listing repository
         locationDao.save(updateLocation); // this will update the location repo
+
 
         return "redirect:/user/profile";
     }

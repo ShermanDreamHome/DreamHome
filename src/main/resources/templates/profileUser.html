@@ -8,6 +8,7 @@
 <h3>Welcome Back</h3>
 <div class="card">
     <div class="card-body" th:each="user:${user}">
+        <img th:src="${user}" width="400px" height="200px" alt="photoUrl" class="text-center" id="photoUrl">
         <h2 class="card-title" th:text="${user.firstName}"></h2>
         <h2 class="card-text" th:text="${user.lastName}"></h2>
         <h2 class="card-text" th:text="${user.email}"></h2>
@@ -29,11 +30,12 @@
         <h2 class="card-text" th:text="${listing.price}"></h2>
         <h2 class="card-text" th:text="${listing.description}"></h2>
         <h2 class="card-text" th:text="${listing.squareFt}"></h2>
-        <h2 class="card-text" th:text="${listing.location.address1}"></h2>
-        <h2 class="card-text" th:text="${listing.location.address2}"></h2>
-        <h2 class="card-text" th:text="${listing.location.city}"></h2>
-        <h2 class="card-text" th:text="${listing.location.state}"></h2>
-        <h2 class="card-text" th:text="${listing.location.zip}"></h2>
+        <h2 class="card-text" th:text="${listing.location}"></h2>
+<!--        <h2 class="card-text" th:text="${listing.location.address1}"></h2>-->
+<!--        <h2 class="card-text" th:text="${listing.location.address2}"></h2>-->
+<!--        <h2 class="card-text" th:text="${listing.location.city}"></h2>-->
+<!--        <h2 class="card-text" th:text="${listing.location.state}"></h2>-->
+<!--        <h2 class="card-text" th:text="${listing.location.zip}"></h2>-->
 
 <!--        .address , .city ect -->
     </div>

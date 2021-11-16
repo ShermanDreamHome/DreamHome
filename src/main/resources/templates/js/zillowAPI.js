@@ -1,11 +1,13 @@
+import {ZILLOW_API_KEY} from "./config";
 //property details
 fetch("https://zillow-com1.p.rapidapi.com/property?zpid=2080998890", {
     "method": "GET",
     "headers": {
         "x-rapidapi-host": "zillow-com1.p.rapidapi.com",
-        "x-rapidapi-key": "b2537f878dmsh5dd7af22e1bc03dp194973jsne0acd22b97a1"
+        "x-rapidapi-key": ZILLOW_API_KEY
     }
 })
+    .then(response => response.json())
     .then(response => {
         if(response.ok) {
             console.log('SUCCESS')
@@ -13,6 +15,7 @@ fetch("https://zillow-com1.p.rapidapi.com/property?zpid=2080998890", {
             console.log('Not Successful')
         }
         console.log(response);
+        document.getElementsByClassName('zillowFetch').scr = <textarea name="zillowFetch" id="zillowFetch"/>
     })
     .catch(err => {
         console.error(err);
@@ -25,11 +28,12 @@ fetch("https://zillow-com1.p.rapidapi.com/images?zpid=2080998890", {
     "method": "GET",
     "headers": {
         "x-rapidapi-host": "zillow-com1.p.rapidapi.com",
-        "x-rapidapi-key": "b2537f878dmsh5dd7af22e1bc03dp194973jsne0acd22b97a1"
+        "x-rapidapi-key": ZILLOW_API_KEY
     }
 })
     .then(response => {
         console.log(response);
+        document.getElementById('zillowImg').src = URL.createObjectURL(Blob);
     })
     .catch(err => {
         console.error(err);

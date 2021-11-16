@@ -2,17 +2,16 @@ package com.dreamHome.dreamHome.controllers;
 
 import com.dreamHome.dreamHome.models.Listing;
 import com.dreamHome.dreamHome.models.Location;
+import com.dreamHome.dreamHome.models.Photo;
 import com.dreamHome.dreamHome.models.User;
 import com.dreamHome.dreamHome.repositories.ListingRepository;
 import com.dreamHome.dreamHome.repositories.LocationRepository;
+import com.dreamHome.dreamHome.repositories.PhotoRepository;
 import com.dreamHome.dreamHome.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -22,11 +21,13 @@ public class ListingController {
     private final ListingRepository searchDoa;
     private final UserRepository userDao;
     private final LocationRepository locationDoa;
+    private final PhotoRepository photoDao;
 
-    public ListingController(ListingRepository searchDoa, UserRepository userDao, LocationRepository locationDoa) {
+    public ListingController(ListingRepository searchDoa, UserRepository userDao, LocationRepository locationDoa, PhotoRepository photoDao) {
         this.searchDoa = searchDoa;
         this.userDao = userDao;
         this.locationDoa = locationDoa;
+        this.photoDao = photoDao;
     }
 
 
@@ -87,7 +88,8 @@ public class ListingController {
     @PostMapping("/edit/{id}")
     public String editListing(@PathVariable Long id,
                               @ModelAttribute Listing updateListing,
-                              @ModelAttribute Location updateLocation) {
+                              @ModelAttribute Location updateLocation,
+                              @RequestParam(name = "product_image_url") String photoUrl) {
 
 
         updateListing.setId(id);
@@ -96,8 +98,16 @@ public class ListingController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         updateListing.setOwner(userDao.getById(currentUser.getId()));
 
-        searchDoa.save(updateListing); // this will update the listing repository
+        updateListing = searchDoa.save(updateListing); // this will update the listing repository
         locationDoa.save(updateLocation); // this will update the location repo
+        Photo photoToSave = new Photo();
+        photoToSave.setListing(updateListing);
+        photoToSave.setLocationUrl(photoUrl);
+        photoDao.save(photoToSave); // saves photo's to repo
+
+
+
+
 
         return "redirect:/user/profile";
     }

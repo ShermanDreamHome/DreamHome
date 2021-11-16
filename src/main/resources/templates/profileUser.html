@@ -5,40 +5,45 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<h3>Welcome Back</h3>
-<div class="card">
+<h3 class="text-center">Welcome Back</h3>
+<div class="card text-center">
     <div class="card-body" th:each="user:${user}">
         <img th:src="${user}" width="400px" height="200px" alt="photoUrl" class="text-center" id="photoUrl">
         <h2 class="card-title" th:text="${user.firstName}"></h2>
         <h2 class="card-text" th:text="${user.lastName}"></h2>
         <h2 class="card-text" th:text="${user.email}"></h2>
         <h2 class="card-text" th:text="${user.location}"></h2>
-</div>
+    </div>
     <form class="form-group" method="get" th:action="@{|/editProfile/${user.id}|}">
         <button class="form-control btn-sm" name="editProfile" type="submit" id="editProfile">Edit Profile</button>
     </form>
 
-<h5>Create New Listing</h5>
-<form class="form-group" method="get" th:action="@{|/createListing|}">
-    <button class="form-control btn-sm" name="create" type="submit" id="create">Create New Listing</button>
-</form>
-<h1>My Listings</h1>
-<div class="card" th:each="listing:${user.listing}">
-    <div class="card-body">
-       <div th:if="${listing.photos.size() != 0}"> <img th:src="${listing.photos.get(0).locationUrl}" width="600px" height="400px" alt="listingPhoto" class="text-center" id="listingPhoto"> </div>
-        <h2 class="card-title" th:text="${listing.title}"></h2>
-        <h2 class="card-text" th:text="${listing.price}"></h2>
-        <h2 class="card-text" th:text="${listing.description}"></h2>
-        <h2 class="card-text" th:text="${listing.squareFt}"></h2>
-<!--        <h2 class="card-text" th:text="${listing.location}"></h2>-->
-        <h2 class="card-text" th:text="${listing.location.address1}"></h2>
-        <h2 class="card-text" th:text="${listing.location.address2}"></h2>
-        <h2 class="card-text" th:text="${listing.location.city}"></h2>
-        <h2 class="card-text" th:text="${listing.location.state}"></h2>
-        <h2 class="card-text" th:text="${listing.location.zip}"></h2>
+    <h5>Create New Listing</h5>
+    <form class="form-group" method="get" th:action="@{|/createListing|}">
+        <button class="form-control btn-sm" name="create" type="submit" id="create">Create New Listing</button>
+    </form>
+    <h1 class="text-center">My Listings</h1>
+    <!--    <div class="row row-cols-1 row-cols-md-2">-->
+    <!--        <div class="col-mb-4">-->
+    <div class="card" th:each="listing:${user.listing}">
+        <div th:if="${listing.photos.size() != 0}"><img th:src="${listing.photos.get(0).locationUrl}"
+                                                        height="600px" alt="listingPhoto"
+                                                        class="text-center card-img-top" id="listingPhoto">
+        </div>
+        <div class="card-body text-center">
+            <h2 class="card-title" th:text="${listing.title}"></h2>
+            <h2 class="card-text" th:text="${listing.price}"></h2>
+            <h2 class="card-text" th:text="${listing.description}"></h2>
+            <h2 class="card-text" th:text="${listing.squareFt}"></h2>
+            <!--        <h2 class="card-text" th:text="${listing.location}"></h2>-->
+            <h2 class="card-text" th:text="${listing.location.address1}"></h2>
+            <h2 class="card-text" th:text="${listing.location.address2}"></h2>
+            <h2 class="card-text" th:text="${listing.location.city}"></h2>
+            <h2 class="card-text" th:text="${listing.location.state}"></h2>
+            <h2 class="card-text" th:text="${listing.location.zip}"></h2>
 
-<!--        .address , .city ect -->
-    </div>
+            <!--        .address , .city ect -->
+        </div>
 
         <form class="form-group" method="get" th:action="@{|/edit/${listing.id}|}">
             <button class="form-control btn-sm" name="edit" type="submit" id="edit">Edit Listing</button>
@@ -48,6 +53,9 @@
         </form>
     </div>
 </div>
+<!--    </div>-->
+<!--</div>-->
+
 
 <form th:action="@{/logout}" th:method="post">
     <button class="btn-block btn" style="margin-top: 8px">Logout</button>
@@ -55,8 +63,10 @@
 
 <footer th:replace="partials/footer :: footer"></footer>
 <script th:replace="partials/scripts :: scripts"></script>
-<script src="//static.filestackapi.com/filestack-js/{LIBRARY_VERSION}/filestack.min.js.gz" integrity="{FILE_HASH}" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="//static.filestackapi.com/filestack-js/{LIBRARY_VERSION}/filestack.min.js.gz" integrity="{FILE_HASH}"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
 <script src="../static/js/filestack.js" type="text/javascript"></script>
 </body>
 </html>

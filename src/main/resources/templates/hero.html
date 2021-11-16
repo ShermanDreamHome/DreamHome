@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="partials/head :: head">-->
+<head th:replace="partials/head :: head">
     <title>Hero</title>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div>
-    <h1>Welcome To My Home Page</h1>
+    <h1>Your Dream Home Is Only A Search Away...</h1><br>
+
+
+    <form class="form center-text">
+        <input class="form-control mr-sm-2 text-center" type="search" placeholder="Enter any city, state or zip..." aria-label="Search"><br>
+        <button class="btn btn-block my-2 my-sm-0 btn-secondary" type="submit">Search</button>
+    </form>
+
     <div class="zillowFetch"></div>
     <img src="" id="zillowImg" />
 </div>

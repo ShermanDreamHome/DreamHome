@@ -38,6 +38,8 @@
             <input class="form-control" id="createSqft" type="number" th:field="*{squareFt}">
 
             <div th:object="${location}">
+                <input class="form-control" type="hidden" th:value="*{id}"/>
+
                 <label for="location">Address Line 1</label>
                 <input class="form-control" id="location" type="text" th:field="*{address1}">
 

@@ -39,6 +39,10 @@ public class UserController {
 
     @GetMapping("/user/profile")
     public String viewUserProfile(Model model) {
+
+//        Location location = locationDao.getBy(id);
+
+
         User currentUserSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(currentUserSession);
        model.addAttribute("user", userDao.getById(currentUserSession.getId())); //gets user by session
@@ -52,8 +56,10 @@ public class UserController {
         Location location = locationDao.getById(id);
 
 
+
         model.addAttribute("user", user);
         model.addAttribute("location", location);
+
 
         return "editProfile";
     }

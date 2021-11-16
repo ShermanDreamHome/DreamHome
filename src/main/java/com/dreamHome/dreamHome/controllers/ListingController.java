@@ -93,7 +93,8 @@ public class ListingController {
 
 
         updateListing.setId(id);
-        updateLocation.setId(id);
+        updateListing.setLocation(updateLocation);
+//        updateLocation.setId(searchDoa.getById(id).getLocation().getId());
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         updateListing.setOwner(userDao.getById(currentUser.getId()));

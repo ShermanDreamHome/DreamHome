@@ -1,2 +1,6 @@
 const ZILLOW_API_KEY = "b2537f878dmsh5dd7af22e1bc03dp194973jsne0acd22b97a1";
 export { ZILLOW_API_KEY };
+
+const FILE_STACK_API_KEY = "AR4KMsnsQX2CmR4KELnGQz";
+export { FILE_STACK_API_KEY };
+

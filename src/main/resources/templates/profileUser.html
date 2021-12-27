@@ -31,16 +31,25 @@
                                                         class="text-center card-img-top" id="listingPhoto">
         </div>
         <div class="card-body text-center">
-            <h2 class="card-title" th:text="${listing.title}"></h2>
-            <h2 class="card-text" th:text="${listing.price}"></h2>
-            <h2 class="card-text" th:text="${listing.description}"></h2>
-            <h2 class="card-text" th:text="${listing.squareFt}"></h2>
+            <h3>Title:</h3>
+            <h4 class="card-text" id="title" th:text="${listing.title}"></h4>
+            <h3>Price:</h3>
+            <h4 class="card-text" th:text="${listing.price}"></h4>
+            <h3>Description:</h3>
+            <h4 class="card-text" th:text="${listing.description}"></h4>
+            <h3>Square Feet:</h3>
+            <h4 class="card-text" th:text="${listing.squareFt}"></h4>
             <!--        <h2 class="card-text" th:text="${listing.location}"></h2>-->
-            <h2 class="card-text" th:text="${listing.location.address1}"></h2>
-            <h2 class="card-text" th:text="${listing.location.address2}"></h2>
-            <h2 class="card-text" th:text="${listing.location.city}"></h2>
-            <h2 class="card-text" th:text="${listing.location.state}"></h2>
-            <h2 class="card-text" th:text="${listing.location.zip}"></h2>
+            <h3>Address Line 1:</h3>
+            <h4 class="card-text" th:text="${listing.location.address1}"></h4>
+            <h3>Address Line 2:</h3>
+            <h4 class="card-text" th:text="${listing.location.address2}"></h4>
+            <h3>City:</h3>
+            <h4 class="card-text" th:text="${listing.location.city}"></h4>
+            <h3>State:</h3>
+            <h4 class="card-text" th:text="${listing.location.state}"></h4>
+            <h3>Zip:</h3>
+            <h4 class="card-text" th:text="${listing.location.zip}"></h4>
 
             <!--        .address , .city ect -->
         </div>
